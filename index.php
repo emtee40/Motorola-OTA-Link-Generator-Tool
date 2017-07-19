@@ -42,7 +42,7 @@ if(isset($_GET['model']) && isset($_GET['sv']) && isset($_GET['carrier'])) {
 	$url = "https://moto-cds.appspot.com/cds/upgrade/1/check/ctx/ota/key/".$_GET['model'];
 	$model = $_GET['model'];
 	$carrier = $_GET['carrier'];
-	$myvars = '{"id":"1","extraInfo":{"carrier":"'.$carrier.'","model":"'.$model.'","softwareVersion":"'.$_GET['sv'].'"},"triggeredBy":"setup"}';
+	$myvars = '{"id":"1","extraInfo":{"carrier":"'.$carrier.'","model":"'.$model.'","softwareVersion":"'.$_GET['sv'].'"},"triggeredBy":"user"}';
 
 	$ch = curl_init( $url );
 	curl_setopt( $ch, CURLOPT_POST, 1);
