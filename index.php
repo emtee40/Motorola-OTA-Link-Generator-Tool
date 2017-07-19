@@ -56,10 +56,11 @@ if(isset($_GET['model']) && isset($_GET['sv']) && isset($_GET['carrier'])) {
 	$url = reset($response->{"contentResources"})->{"url"};
 	$preInstallNotes = replacer($response->{"content"}->{"preInstallNotes"});
 	$upgradeNotification = replacer($response->{"content"}->{"upgradeNotification"});
+	$displayVersion = replacer($response->{"content"}->{"displayVersion"});
 	$versionzip = $version.".zip";
 	
 	echo "<b>New OTA Available</b><br><a href=$url download=$versionzip><div class='button buttonBlue'>Download<div class='ripples buttonRipples'><span class='ripplesCircle'></span></div></div></a><br>";
-	echo "<b>Version :</b><br>$version<br><br><b>PreInstall Notes :</b><br>$preInstallNotes<br><b>Upgrade Notification :</b><br>$upgradeNotification";
+	echo "<b>Version :</b><br>$version<br><b>Display Version :</b><br>$displayVersion<br><br><b>PreInstall Notes :</b><br>$preInstallNotes<br><b>Upgrade Notification :</b><br>$upgradeNotification";
 	$next = "index.php?model=$model&sv=$version&carrier=$carrier";
 	echo "<br><a href=$next><div class='button buttonGreen'>Next Available OTA<div class='ripples buttonRipples'><span class='ripplesCircle'></span></div></div></a>";
 	}else{
