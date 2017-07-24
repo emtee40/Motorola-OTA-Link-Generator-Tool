@@ -47,8 +47,8 @@ if(isset($_GET['model']) && isset($_GET['sv']) && isset($_GET['carrier'])) {
         $sn=$_GET['sn'];
     else
         $sn="SERIAL_NUMBER_NOT_AVAILABLE";
-        
-	$url = "https://moto-cds.appspot.com/cds/upgrade/1/check/ctx/ota/key/".$_GET['model'];
+
+	$url = "https://moto-cds.appspot.com/cds/upgrade/1/check/ctx/ota/key/".rawurlencode($_GET['model']);
 	$model = $_GET['model'];
 	$carrier = $_GET['carrier'];
 	$myvars = '{"id":"1","extraInfo":{"carrier":"'.$carrier.'","model":"'.$model.'","softwareVersion":"'.$_GET['sv'].'"},"identityInfo":{"serialNumber":"'.$sn.'"},"triggeredBy":"user","idType":"serialNumber"}';
@@ -70,7 +70,7 @@ if(isset($_GET['model']) && isset($_GET['sv']) && isset($_GET['carrier'])) {
 	
 	echo "<b>New OTA Available</b><br><a href=$url download=$versionzip><div class='button buttonBlue'>Download<div class='ripples buttonRipples'><span class='ripplesCircle'></span></div></div></a><br>";
 	echo "<b>Version :</b><br>$version<br><b>Display Version :</b><br>$displayVersion<br><br><b>PreInstall Notes :</b><br>$preInstallNotes<br><b>Upgrade Notification :</b><br>$upgradeNotification";
-	$next = "soak.php?model=$model&sv=$version&carrier=$carrier&sn=$sn";
+	$next = "soak.php?model=".rawurlencode($_GET['model'])."&sv=$version&carrier=$carrier&sn=$sn";
 	echo "<br><a href=$next><div class='button buttonGreen'>Next Available OTA<div class='ripples buttonRipples'><span class='ripplesCircle'></span></div></div></a>";
 	}else{
 		echo "<center><font color='#F44336'>Something Looks Wrong ReCheck inputs Or No Update Available</font></center><br>".$page;
