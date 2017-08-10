@@ -51,9 +51,15 @@ if(isset($_GET['model']) && isset($_GET['sv']) && isset($_GET['carrier'])) {
 	$url = "https://moto-cds.appspot.com/cds/upgrade/1/check/ctx/ota/key/".rawurlencode($_GET['model']);
 	$model = $_GET['model'];
 	$carrier = $_GET['carrier'];
+    //Exclusive Carriers
     if ($carrier == "retcn")
-        $china = ',"deviceInfo":{"country":"CN","region":"CN"}';
-    $myvars = '{"id":"'.$sn.'"'.$china.',"extraInfo":{"carrier":"'.$carrier.'","model":"'.$model.'","softwareVersion":"'.$_GET['sv'].'"},"triggeredBy":"user"}';
+        $deviceInfo = ',"deviceInfo":{"country":"CN","region":"CN"}';
+    if ($carrier == "bwaca")
+        $deviceInfo = ',"deviceInfo":{"country":"CA","region":"CA"}';
+    if ($carrier == "retus" || $carrier == "vzw" || $carrier == "att")
+        $deviceInfo = ',"deviceInfo":{"country":"US","region":"US"}';
+    
+    $myvars = '{"id":"'.$sn.'"'.$deviceInfo.',"extraInfo":{"carrier":"'.$carrier.'","model":"'.$model.'","softwareVersion":"'.$_GET['sv'].'"},"triggeredBy":"user"}';
 
 	$ch = curl_init( $url );
 	curl_setopt( $ch, CURLOPT_POST, 1);
