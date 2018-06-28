@@ -70,6 +70,7 @@
       curl_setopt( $ch, CURLOPT_POSTFIELDS, $myvars);
       curl_setopt( $ch, CURLOPT_HEADER, 0);
       curl_setopt( $ch, CURLOPT_RETURNTRANSFER, 1);
+      curl_setopt( $ch, CURLOPT_USERAGENT, 'com.motorola.ccc.ota');
       $response = json_decode(curl_exec( $ch ));
 
       if ($response->{"proceed"}) {
