@@ -58,7 +58,7 @@
       if ($carrier == "bwaca") {
         $deviceInfo = ',"deviceInfo":{"country":"CA","region":"CA"}';
       }
-      $myvars = '{"id":"'.$sn.'"'.$deviceInfo.',"extraInfo":{"carrier":"'.$carrier.'","model":"'.$model.'","softwareVersion":"'.$_GET['sv'].'","otaSourceSha1":"'.$_GET['guid'].'"},"triggeredBy":"user"}';
+      $myvars = '{"id":"'.$sn.'"'.$deviceInfo.',"extraInfo":{"carrier":"'.$carrier.'","vitalUpdate": false,"otaSourceSha1":"'.$_GET['guid'].'"},"triggeredBy":"user"}';
       $ch = curl_init( $url );
       curl_setopt( $ch, CURLOPT_POST, 1);
       curl_setopt( $ch, CURLOPT_POSTFIELDS, $myvars);
